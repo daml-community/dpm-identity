@@ -13,13 +13,11 @@ Before opening a PR make sure:
 1. Check out the repository locally.
 2. Create a new branch based off `master`, and commit your organisation's files. 
   As a reminder, an organisation folder should contain:
-    - A [`_meta.json`](https://daml-community.github.io/daml-identity-docs/repo-structure/files.html#org-metadata) file that specifies metadata about the organisation
-    - A collection of [`<person>.json`](https://daml-community.github.io/daml-identity-docs/repo-structure/files.html#person-metadata) files and their associated [`<person>.pub`](https://daml-community.github.io/daml-identity-docs/repo-structure/files.html#person-public-key) public keys.
-3. Record the gittuf reference state via `gittuf rsl record <branch-name>`
-4. Push your changes to the remote
-5. Run a `gittuf sync`
-6. Open a PR, and request reviews from **maintainers**
-7. When 2 maintainers approve, the PR can be merged.
+    - A [`_meta.json`](../repo-structure/files.md#org-metadata) file that specifies metadata about the organisation
+    - A collection of [`<person>.json`](../repo-structure/files.md#person-metadata) files and their associated [`<person>.pub`](../repo-structure/files.md#person-public-key) public keys.
+3. Push your changes to the remote on a new branch. (Collaborator status is required)
+4. Open a PR, and request reviews from **maintainers**
+5. When 2 maintainers approve, the PR can be merged.
 
 ## Key Information
 Please fill out the following details:
