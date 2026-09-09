@@ -2,7 +2,7 @@
 ## Before Opening
 Before opening a PR make sure:
 
-- You have been added as a contributor to the repository.
+- You have been added as a contributor to the repository via the request mechanism. If not request to be added [here](https://github.com/daml-community/daml-identity/issues/new?template=add-contributor.yml).
 - You understand the [file structure](https://daml-community.github.io/daml-identity-docs/repo-structure/files.html).
 - You've followed the setup instructions on the wiki to setup a **gpg-agent** and enable gpg signing of commits. If not see here:
     - [Windows](https://daml-community.github.io/daml-identity-docs/repo-structure/setup/windows.html)
