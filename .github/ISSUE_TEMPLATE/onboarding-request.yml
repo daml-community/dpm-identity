@@ -1,7 +1,7 @@
 name: Onboarding - Request to be added as a contributor
 description: Request for your organisation to be added to this repository
-title: "[Contributor Request]: "
-labels: ["contributor-request"]
+title: "[Onboarding Request]: "
+labels: ["onboarding-request"]
 body:
   - type: markdown
     attributes:
@@ -36,3 +36,8 @@ body:
       placeholder: e.g. octocat
     validations:
       required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        Once a maintainer reviews your request, they will decide whether you will be added as a contributor
