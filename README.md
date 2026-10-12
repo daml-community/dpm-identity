@@ -3,3 +3,9 @@ The `daml-identity` repository is a protected store of keys, containing the iden
 It was implemented as part of [this](https://github.com/canton-foundation/canton-dev-fund/blob/a51bd2127e5b4157afa1d364b0217f2063bb344d/proposals/2026-07-Obsidian-Package-Distribution.md#milestone-1-keys-repository) proposal
 
 For documentation on how to contribute and use this repository see [here](https://daml-community.github.io/daml-identity-docs/)
+
+## License
+
+Copyright 2026 Obsidian Systems
+
+Licensed under the [Apache License, Version 2.0](./LICENSE)
