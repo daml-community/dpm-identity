@@ -2,12 +2,12 @@
 ## Before Opening
 Before opening a PR make sure:
 
-- You have been added as a contributor to the repository via the request mechanism. If not request to be added [here](https://github.com/daml-community/daml-identity/issues/new?template=add-contributor.yml).
-- You understand the [file structure](https://daml-community.github.io/daml-identity-docs/repo-structure/files.html).
+- You have been added as a contributor to the repository via the request mechanism. If not request to be added [here](https://github.com/daml-community/dpm-identity/issues/new?template=add-contributor.yml).
+- You understand the [file structure](https://daml-community.github.io/dpm-identity-docs/repo-structure/files.html).
 - You've followed the setup instructions on the wiki to setup a **gpg-agent** and enable gpg signing of commits. If not see here:
-    - [Windows](https://daml-community.github.io/daml-identity-docs/repo-structure/setup/windows.html)
-    - [macOS](https://daml-community.github.io/daml-identity-docs/repo-structure/setup/macOS.html)
-    - [Linux](https://daml-community.github.io/daml-identity-docs/repo-structure/setup/linux.html)
+    - [Windows](https://daml-community.github.io/dpm-identity-docs/repo-structure/setup/windows.html)
+    - [macOS](https://daml-community.github.io/dpm-identity-docs/repo-structure/setup/macOS.html)
+    - [Linux](https://daml-community.github.io/dpm-identity-docs/repo-structure/setup/linux.html)
 
 ## Writing the PR
 1. Check out the repository locally.
