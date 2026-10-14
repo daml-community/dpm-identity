@@ -6,4 +6,3 @@ The `dpm-identity` respository stores identities and audits as a part of [this](
 Copyright 2026 Obsidian Systems
 
 Licensed under the [Apache License, Version 2.0](./LICENSE)
-
