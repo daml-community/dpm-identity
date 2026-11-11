@@ -1,0 +1,39 @@
+name: gittuf
+
+on:
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Verify gittuf policy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out PR branch
+        # actions/checkout v7.0.1
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          fetch-depth: 0
+
+      - name: Fetch refs
+        run: |
+          git fetch --no-tags --force origin '+refs/gittuf/*:refs/gittuf/*'
+
+          if [ "$(git symbolic-ref --quiet --short HEAD)" != 'master' ]; then
+            git fetch --no-tags --force origin '+refs/heads/master:refs/heads/master'
+          fi
+
+      - name: Install gittuf 0.17.0
+        # gittuf/gittuf-installer v0.17.0
+        uses: gittuf/gittuf-installer@4ecbb57b40e6eb6beaba120dcbef46123b0249e0
+        with:
+          gittuf-version: '0.17.0'
+
+      - name: Verify repository state
+        run: ./ci/verify.sh
