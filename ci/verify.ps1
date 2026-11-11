@@ -1,12 +1,16 @@
 #!/usr/bin/env pwsh
 
 $RequiredGittufVersion = '0.17'
+$BaseBranch = 'master'
 
 $IgnoreGittufVersion = $false
 
 function Show-Usage {
     Write-Output @"
 Usage: verify.ps1 [--ignore-gittuf-version]
+
+Verifies that the current branch can be merged into '$BaseBranch' under the
+repository's gittuf policy.
 
 Options:
   --ignore-gittuf-version  Skip the check that gittuf is version $RequiredGittufVersion.
@@ -42,7 +46,15 @@ if (-not $IgnoreGittufVersion) {
     }
 }
 
-gittuf verify-ref master
+$FeatureBranch = git symbolic-ref --quiet --short HEAD
+if (-not $FeatureBranch) {
+    Write-Error 'Unable to determine the current branch; HEAD is detached. Check out a branch and try again.'
+    exit 1
+}
+
+Write-Output "Verifying that '$FeatureBranch' can be merged into '$BaseBranch'..."
+
+gittuf verify-mergeable --base-branch $BaseBranch --feature-branch $FeatureBranch
 
 if ($LASTEXITCODE -eq 0) {
     Write-Output 'Repository satisfies policy.'

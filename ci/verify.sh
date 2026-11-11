@@ -2,12 +2,16 @@
 set -uo pipefail
 
 REQUIRED_GITTUF_VERSION='0.17'
+BASE_BRANCH='master'
 
 ignore_gittuf_version=0
 
 usage() {
     cat >&2 <<USAGE
 Usage: $(basename "$0") [--ignore-gittuf-version]
+
+Verifies that the current branch can be merged into '${BASE_BRANCH}' under the
+repository's gittuf policy.
 
 Options:
   --ignore-gittuf-version  Skip the check that gittuf is version ${REQUIRED_GITTUF_VERSION}.
@@ -52,7 +56,15 @@ if [ "$ignore_gittuf_version" -eq 0 ]; then
     esac
 fi
 
-if gittuf verify-ref master; then
+feature_branch=$(git symbolic-ref --quiet --short HEAD)
+if [ -z "$feature_branch" ]; then
+    echo 'Unable to determine the current branch; HEAD is detached. Check out a branch and try again.' >&2
+    exit 1
+fi
+
+echo "Verifying that '${feature_branch}' can be merged into '${BASE_BRANCH}'..."
+
+if gittuf verify-mergeable --base-branch "$BASE_BRANCH" --feature-branch "$feature_branch"; then
     echo 'Repository satisfies policy'
     exit 0
 else
