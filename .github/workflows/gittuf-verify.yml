@@ -1,0 +1,59 @@
+name: gittuf
+
+on:
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Verify gittuf policy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the branch under test
+        # actions/checkout v7.0.1
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          # ci/verify.sh resolves the feature branch from HEAD, so check out the
+          # branch itself rather than the detached merge commit that a
+          # pull_request event would otherwise give us.
+          ref: ${{ github.head_ref || github.ref_name }}
+          fetch-depth: 0
+
+      - name: Fetch master and the gittuf refs
+        run: |
+          # gittuf reads policy, the RSL and attestations from refs/gittuf/*,
+          # which actions/checkout does not fetch.
+          git fetch --no-tags --force origin '+refs/gittuf/*:refs/gittuf/*'
+
+          # verify-mergeable resolves 'master' against a local ref. Fetching it
+          # is only needed (and only permitted) when it isn't the checked out
+          # branch, as it is for a workflow_dispatch run on master.
+          if [ "$(git symbolic-ref --quiet --short HEAD)" != 'master' ]; then
+            git fetch --no-tags --force origin '+refs/heads/master:refs/heads/master'
+          fi
+
+      - name: Show the refs being verified
+        run: |
+          for ref in \
+            refs/gittuf/reference-state-log \
+            refs/gittuf/policy \
+            refs/gittuf/attestations \
+            refs/heads/master \
+            HEAD
+          do
+            printf '%-34s %s\n' "$ref" "$(git rev-parse --short "$ref" 2>/dev/null || echo '<missing>')"
+          done
+
+      - name: Install gittuf 0.17.0
+        # gittuf/gittuf-installer v0.17.0
+        uses: gittuf/gittuf-installer@4ecbb57b40e6eb6beaba120dcbef46123b0249e0
+        with:
+          gittuf-version: '0.17.0'
+
+      - name: Verify that the branch can be merged into master
+        run: ./ci/verify.sh
