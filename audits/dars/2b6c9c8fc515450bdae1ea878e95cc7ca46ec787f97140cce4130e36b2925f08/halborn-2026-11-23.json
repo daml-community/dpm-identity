@@ -1,0 +1,18 @@
+{
+  "assessment": {
+    "date": "2026-11-23T16:08:13Z",
+    "decision": "failed",
+    "message": " Overall: 0 findings (0 Critical, 0 High, 0 Medium, 0 Low, 0 Informational); unresolved Critical/High: 0, unresolved Medium: 0."
+  },
+  "audit-id": "0688de76-fd74-4573-973a-3c13fffff4c0",
+  "auditor": "halborn",
+  "auditor-fingerprint": "2F30549D4EEAA896C684EA18A44F55903795D721",
+  "dar-hash": "sha256:2b6c9c8fc515450bdae1ea878e95cc7ca46ec787f97140cce4130e36b2925f08",
+  "source": {
+    "closed": false,
+    "rev": "9a3fc78c0a77ae9f036645a7c60695b581fcffd9",
+    "url": "https://github.com/daml-community/data-default.git",
+    "hash": "sha256:b8143d1a759f7f961cd0bcf1ce66e1e9d003a46e5b91c879ab4ddc9a3f89857c"
+  },
+  "version": "1.0"
+}
